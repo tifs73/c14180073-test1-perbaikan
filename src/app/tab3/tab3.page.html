@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      PHOTO AND DETILS<br>
+      <ion-button routerLink="/tab4">SEE ALL PHOTO</ion-button>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row *ngFor="let ifoto of urlimagestorage; index as position">
+      <ion-img [src]="ifoto">
+      </ion-img> 
+      <div>{{namafile}}</div>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
