@@ -12,9 +12,13 @@
       <ion-col size="6" *ngFor="let a of FotoService.datafoto; let i = index">
         <ion-img [src]="a.webviewpath"></ion-img>
         <ion-fab vertical="bottom" horizontal="center">
-          <ion-button (click)="upload(i)" color="warning">
-           UPLOAD
+          <ion-button (click)="selected(i)" color="warning">
+           CHOOSE
           </ion-button>
+          <ng-template *ngIf="FotoService.datafoto[i].statusfoto == true; then templatetrue; else templatefalse"></ng-template>
+          <ng-template #templatetrue>
+            <ion-button color="danger">SELECTED</ion-button>
+          </ng-template>
         </ion-fab>
       </ion-col>
     </ion-row>
@@ -24,5 +28,9 @@
     <ion-fab-button (click)="tambahfoto()">
       <ion-icon name="camera-outline"></ion-icon>
     </ion-fab-button>
+    <br>
+    <ion-button (click)="upload()">
+      UPLOAD
+     </ion-button>
   </ion-fab>
 </ion-content>

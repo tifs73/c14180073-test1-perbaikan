@@ -9,6 +9,7 @@ const { camera, Filesystem, Storage } = Plugins;
 })
 export class FotoService {
 
+  public selectedphoto : photo[] = [];
   public datafoto : photo[] = [];
   private keyfoto : string = "foto";
   private platform : Platform; //platform untuk mengenali dia dibuat dimana
@@ -56,13 +57,15 @@ export class FotoService {
       return {
         filepath : simpanfile.uri, //identifikasi nama / url
         webviewpath : Capacitor.convertFileSrc(simpanfile.uri), //capacitor digunakan waktu utk mau convert ke android / buat camera
-        dataimage : datafoto
+        dataimage : datafoto,
+        statusfoto : false
       }
     } else {
       return {
         filepath  : namafile,
         webviewpath : foto.webPath,
-        dataimage : datafoto
+        dataimage : datafoto,
+        statusfoto : false
       }
     }
   }
@@ -125,5 +128,6 @@ export class FotoService {
 export interface photo {
   filepath : string; //sebagai folder/alamatnya
   webviewpath : string; //file name
-  dataimage : File
+  dataimage : File;
+  statusfoto : boolean
 }

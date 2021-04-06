@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row *ngFor="let ifoto of urlimagestorage; index as position">
+    <ion-row *ngFor="let ifoto of urlimagestorage; let i = index">
       <ion-img [src]="ifoto">
       </ion-img> 
       <div>{{namafile}}</div>

@@ -21,19 +21,28 @@ export class Tab2Page {
     this.FotoService.tambahfoto();
   }
 
-  upload(i) {
+  upload() {
     this.urlimagestorage=[];
-    const imgfilepath = `storageimg/${this.FotoService.datafoto[i].filepath}`;
-    this.afStorage.upload(imgfilepath, this.FotoService.datafoto[i].dataimage).then(() => {
+    for (var index in this.FotoService.datafoto) {
+    const imgfilepath = `storageimg/${this.FotoService.selectedphoto[index].filepath}`;
+    this.afStorage.upload(imgfilepath, this.FotoService.selectedphoto[index].dataimage).then(() => {
       this.afStorage.storage.ref().child(imgfilepath).getDownloadURL().then((url) => { 
-        var dtphoto = {filepath:url.toString()}
-        this.urlimagestorage.unshift(dtphoto);
+        this.urlimagestorage.unshift(url);
       });
     });
+    }
+  }
+
+  selected(i) {
+    this.FotoService.datafoto[i].statusfoto = true;
+    this.FotoService.selectedphoto.unshift(this.FotoService.datafoto[i]);
   }
   
 }
 
 export interface photo {
   filepath : string; //sebagai folder/alamatnya
+  webviewpath : string; //file name
+  dataimage : File;
+  statusfoto : boolean
 }

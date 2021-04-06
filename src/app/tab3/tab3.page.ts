@@ -14,7 +14,7 @@ export interface filefoto {
 })
 export class Tab3Page implements OnInit{
 
-  urlimagestorage : string[] = [];
+  urlimagestorage : tampilfoto[] = [];
   namafile : string;
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class Tab3Page implements OnInit{
 
   constructor(
     private afStorage : AngularFireStorage,
-    public fotoservice : FotoService
+    public fotoservice : FotoService 
   ) { }
 
   async ionViewDidEnter() {
@@ -38,6 +38,8 @@ export class Tab3Page implements OnInit{
     .then((res) => {
       res.items.forEach((itemref) => {
         itemref.getDownloadURL().then(url => {
+          var potong = url.split("2F", 18);
+          console.log(potong);
           this.urlimagestorage.unshift(url);
         })
       });
@@ -52,4 +54,9 @@ export class Tab3Page implements OnInit{
       this.namafile = this.fotoservice.datafoto[i].filepath;
     }
   }
+}
+
+export interface tampilfoto {
+  urlimage : string;
+  filepath : string;
 }
